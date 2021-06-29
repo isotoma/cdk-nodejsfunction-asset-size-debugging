@@ -1,5 +1,11 @@
 #!/bin/bash -e
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+DIR_PARENT="$(dirname "$DIR")"
+
+# Spurious yarn.lock in the parent of the project
+echo "" >> "$DIR_PARENT/yarn.lock"
+
 rm -rf cdk.out
 npm run -- cdk --app 'node ./lib/index.js' synth -e mystage/mystack
 
@@ -18,11 +24,9 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
-if echo "$asset_paths" | grep '^'"$DIR"'$' >> /dev/null; then
+if echo "$asset_paths" | grep '^'"$DIR_PARENT"'$' >> /dev/null; then
     >&2 echo -e "${RED}### BAD ###${NC}"
-    >&2 echo "Found absolute path to project root in assets, this is probably wrong and bad"
+    >&2 echo "Found absolute path to *the parent* of the project root in assets, this is definitely wrong and bad"
     exit 1
 else
     >&2 echo -e "${GREEN}### GOOD ###${NC}"
