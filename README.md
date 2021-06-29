@@ -17,6 +17,12 @@ Branches:
 - [`do-not-synth-exclusive`](https://github.com/isotoma/cdk-nodejsfunction-asset-size-debugging/pull/3),
   expected behaviour. Remove the `-e` flag from the `synth`
   command. Asset path is as expected.
+- (possibly unrelated):
+  [`spurious-yarn-lock`](https://github.com/isotoma/cdk-nodejsfunction-asset-size-debugging/pull/4),
+  broken behaviour. Add a `yarn.lock` in a parent on the project
+  root. Asset path is now a zip of the _parent_ of the project root. I
+  think this is because it is looking for a `yarn.lock` first, and
+  this is just a knock-on effect of the issue.
 
 Method (See the `check.sh` script):
 - Runs the `synth` command, then looks in the assets manifest
