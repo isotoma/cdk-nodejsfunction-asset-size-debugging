@@ -1,0 +1,4 @@
+node_modules
+lib/*
+cdk.out
+cdk.context.json
