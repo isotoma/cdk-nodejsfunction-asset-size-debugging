@@ -1,5 +1,7 @@
 # cdk-nodejsfunction-asset-size-debugging
 
+https://github.com/aws/aws-cdk/issues/15346
+
 Believe this to demonstrate some strange behaviour with the CDK where the following mechanisms intersect:
 - `@aws-cdk/aws-lambda-nodejs.NodejsFunction`
 - `@aws-cdk/core.Stage`
