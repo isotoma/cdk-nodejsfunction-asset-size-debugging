@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 rm -rf cdk.out
-npm run -- cdk --app 'node ./lib/index.js' synth -e mystage/mystack
+npm run -- cdk --app 'node ./lib/index.js' synth mystage/mystack
 
 # Find out what non-template assets that wants to deploy
 asset_manifest='cdk.out/assembly-mystage/*.assets.json'
